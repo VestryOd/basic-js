@@ -18,18 +18,18 @@ describe('What season', () => {
     //Specific requirements
 
     describe('base requirements', () => {
-        it.optional('returns proper value', () => {   
-            const [ 
-                winter, 
-                spring, 
-                summer, 
+        it.optional('returns proper value', () => {
+            const [
+                winter,
+                spring,
+                summer,
                 autumn,
             ] = [
-                new Date(2019, 11, 22, 23, 45, 11, 500),
-                new Date(2018, 4, 17, 11, 27, 4, 321),
-                new Date(2017, 6, 11, 23, 45, 11, 500),
-                new Date(1994, 8, 26, 3, 0, 11, 500),
-            ];
+                    new Date(2019, 11, 22, 23, 45, 11, 500),
+                    new Date(2018, 4, 17, 11, 27, 4, 321),
+                    new Date(2017, 6, 11, 23, 45, 11, 500),
+                    new Date(1994, 8, 26, 3, 0, 11, 500),
+                ];
             assert.equal(getSeason(winter), 'winter');
             assert.equal(getSeason(spring), 'spring');
             assert.equal(getSeason(summer), 'summer');
@@ -37,17 +37,17 @@ describe('What season', () => {
         });
 
         it.optional('returns proper value if date is before 1970', () => {
-            const [ 
-                winter, 
-                spring, 
-                summer, 
+            const [
+                winter,
+                spring,
+                summer,
                 autumn,
             ] = [
-                new Date(1900, 0, 22, 23, 45, 11, 500),
-                new Date(1354, 4, 17, 11, 27, 4, 321),
-                new Date(1, 6, 13, 23, 45, 11, 500),
-                new Date(22, 8, 22, 3, 0, 11, 500),
-            ];
+                    new Date(1900, 0, 22, 23, 45, 11, 500),
+                    new Date(1354, 4, 17, 11, 27, 4, 321),
+                    new Date(1, 6, 13, 23, 45, 11, 500),
+                    new Date(22, 8, 22, 3, 0, 11, 500),
+                ];
             assert.equal(getSeason(winter), 'winter');
             assert.equal(getSeason(spring), 'spring');
             assert.equal(getSeason(summer), 'summer');
@@ -55,17 +55,17 @@ describe('What season', () => {
         });
 
         it.optional('returns proper value (month index)', () => {
-            const [ 
-                winter, 
-                spring, 
-                summer, 
+            const [
+                winter,
+                spring,
+                summer,
                 autumn,
             ] = [
-                new Date(2025, 1, 22, 23, 45, 11, 500),
-                new Date(2134, 2, 17, 11, 27, 4, 321),
-                new Date(2012, 5, 13, 23, 45, 11, 500),
-                new Date(2019, 8, 22, 3, 0, 11, 500),
-            ];
+                    new Date(2025, 1, 22, 23, 45, 11, 500),
+                    new Date(2134, 2, 17, 11, 27, 4, 321),
+                    new Date(2012, 5, 13, 23, 45, 11, 500),
+                    new Date(2019, 8, 22, 3, 0, 11, 500),
+                ];
             assert.equal(getSeason(winter), 'winter');
             assert.equal(getSeason(spring), 'spring');
             assert.equal(getSeason(summer), 'summer');
@@ -180,7 +180,7 @@ describe('What season', () => {
         });
     });
 
-    describe('extended requirements ', () => {   
+    describe('extended requirements ', () => {
         it.optional('throws an error on invalid argument', () => {
             expect(() => getSeason('foo')).to.throw();
             expect(() => getSeason({ John: 'Smith' })).to.throw();
@@ -232,7 +232,7 @@ describe('What season', () => {
 
             Object.setPrototypeOf(deeperFakeDate, Object.getPrototypeOf(new Date()));
 
-           expect(() => getSeason(deeperFakeDate)).to.throw();
+            expect(() => getSeason(deeperFakeDate)).to.throw();
         });
     });
 });
