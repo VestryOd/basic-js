@@ -4,31 +4,25 @@ module.exports = function transform(arr) {
 
   if (arr.length === 0) return arr;
 
-  let next = false, result = [];
+  let result = [], next = false;
+  let sequences = ['--discard-prev', '--double-prev', '--discard-next', '--double-next'];
 
   for (let i = 0; i < arr.length; i++) {
-
-    if (next) {
+    if (arr[i] === '--double-prev' && i !== 0) {
+      result.push(arr[i - 1]);
+    } else if (arr[i] === '--discard-prev' && i !== 0) {
+      result.pop();
+    } else if (arr[i] === '--double-next' && i !== arr.length - 1) {
+      result.push(arr[i + 1]);
+    } else if (arr[i] === '--discard-next' && i !== arr.length - 1) {
+      next = true;
+    } else if (next) {
       next = false;
       continue;
+    } else if (!sequences.includes(arr[i])) {
+      result.push(arr[i]);
     } else {
-      switch (arr[i]) {
-        case '--discard-prev':
-          if (result.length > 0) result.pop();          
-          break;
-        case '--double-prev':
-          if (result.length > 0) result.push(result[result.length - 1]);
-          break;
-        case '--discard-next':
-          next = true;
-          break;
-        case '--double-next':
-            i >= arr.length - 1 || result.push(arr[i + 1]);
-          break;
-        default:
-          result.push(arr[i]);
-          break;
-      }
+      continue;
     }
   }
   return result;
